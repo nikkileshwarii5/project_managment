@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const mongoose = require('mongoose');
+const {mongoose} = require('mongoose');
 const authRoutes = require('./routes/auth.js');
 const userRoutes = require('./routes/user.js');
 const projectRoutes = require('./routes/project.js');
@@ -8,6 +8,8 @@ const teamRoutes = require('./routes/teams.js');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+
+
 
 const app = express();
 dotenv.config();
@@ -21,6 +23,7 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.use(morgan('tiny'));
 app.disable('x-powered-by');
+app.use(cookieParser());
 
 const port = process.env.PORT || 8700;
 
