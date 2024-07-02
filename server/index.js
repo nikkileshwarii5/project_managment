@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
-const {mongoose} = require('mongoose');
+const mongoose = require('mongoose');
 const authRoutes = require('./routes/auth.js');
 const userRoutes = require('./routes/user.js');
 const projectRoutes = require('./routes/project.js');
@@ -16,6 +16,8 @@ dotenv.config();
 
 /** Middlewares */
 app.use(express.json());
+app.use(cookieParser());
+
 const corsConfig = {
     credentials: true,
     origin: true,
@@ -23,7 +25,7 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.use(morgan('tiny'));
 app.disable('x-powered-by');
-app.use(cookieParser());
+
 
 const port = process.env.PORT || 8700;
 
