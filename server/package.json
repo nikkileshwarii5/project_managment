@@ -17,19 +17,16 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-<<<<<<< HEAD
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.4",
     "morgan": "^1.10.0",
     "nodemailer": "^6.9.14",
     "nodemon": "^3.1.4",
-=======
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.13.0",
     "morgan": "^1.10.0",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
->>>>>>> 4f81b559c1d0e0b7e06e4c2d61f0c01b136d1705
     "otp-generator": "^4.0.1",
     "punycode": "^2.3.1"
   }
