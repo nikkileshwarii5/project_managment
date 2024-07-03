@@ -21,6 +21,7 @@ import validator from "validator";
 import { googleSignIn, signUp } from "../api/index";
 import OTP from "./OTP";
 import { useGoogleLogin } from "@react-oauth/google";
+import googlelogo from "../Images/googlelogo.png";
 
 const Container = styled.div`
   width: 100%;
@@ -367,7 +368,7 @@ const SignUp = ({ setSignUpOpen, setSignInOpen }) => {
                   <CircularProgress color="inherit" size={20} />
                 ) : (
                   <>
-                    <GoogleIcon src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/1000px-Google_%22G%22_Logo.svg.png?20210618182606" />
+                    <img src={googlelogo} />
                     Sign In with Google</>
                 )}
               </OutlinedBox>

@@ -67,7 +67,7 @@ const Navbar = ({ setSignInOpen }) => {
 
   return (
     <Container>
-      <Logo>VEXA</Logo>
+      <Logo>TaskTrek</Logo>
       <Menu>
         <MenuItem href="#home">Home</MenuItem>
         <MenuItem href="#features">Features</MenuItem>
