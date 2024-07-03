@@ -1,5 +1,13 @@
+// export function localVariables(req, res, next) {
+//     res.app.locals = {
+//         OTP: null,
+//         resetSession: false,
+//         CODE: null
+//     };
+//     next();
+// }
 
-export function localVariables(req, res, next) {
+function localVariables(req, res, next) {
     res.app.locals = {
         OTP: null,
         resetSession: false,
@@ -7,3 +15,7 @@ export function localVariables(req, res, next) {
     };
     next();
 }
+
+module.exports = {
+    localVariables
+};

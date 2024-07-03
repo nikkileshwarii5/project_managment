@@ -1,4 +1,5 @@
-import mongoose from "mongoose";
+// import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const TasksSchema = new mongoose.Schema({
     projectId: {
@@ -21,4 +22,4 @@ const TasksSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
-export default mongoose.model("Tasks", TasksSchema);
+module.exports = mongoose.model("Tasks", TasksSchema);

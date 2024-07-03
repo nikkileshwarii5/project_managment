@@ -1,5 +1,25 @@
-import express from "express";
-import {
+// import express from "express";
+// import {
+//   update,
+//   deleteUser,
+//   getUser,
+//   subscribe,
+//   unsubscribe,
+//   getUserProjects,
+//   getUserTeams,
+//   findUser,
+//   findUserByEmail,
+//   getNotifications,
+//   getWorks,
+//   getTasks
+// } from "../controllers/user.js";
+// import { verifyToken } from "../middleware/verifyToken.js";
+
+const express = require("express");
+const userControllers = require("../controllers/user.js");
+const verifyTokenMiddleware = require("../middleware/verifyToken.js");
+
+const {
   update,
   deleteUser,
   getUser,
@@ -12,8 +32,10 @@ import {
   getNotifications,
   getWorks,
   getTasks
-} from "../controllers/user.js";
-import { verifyToken } from "../middleware/verifyToken.js";
+} = userControllers;
+
+const { verifyToken } = verifyTokenMiddleware;
+
 
 const router = express.Router();
 
@@ -46,4 +68,4 @@ router.get("/works", verifyToken, getWorks);
 router.get("/tasks", verifyToken, getTasks);
 
 
-export default router;
+module.exports = router;

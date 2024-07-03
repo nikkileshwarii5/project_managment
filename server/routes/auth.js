@@ -1,7 +1,27 @@
-import express from "express";
-import { signup,signin, logout, googleAuthSignIn, generateOTP, verifyOTP, createResetSession,findUserByEmail, resetPassword } from "../controllers/auth.js";
-import { verifyToken } from "../middleware/verifyToken.js";
-import { localVariables } from "../middleware/auth.js";
+// import express from "express";
+// import { signup,signin, logout, googleAuthSignIn, generateOTP, verifyOTP, createResetSession,findUserByEmail, resetPassword } from "../controllers/auth.js";
+// import { verifyToken } from "../middleware/verifyToken.js";
+// import { localVariables } from "../middleware/auth.js";
+
+const express = require("express");
+const authControllers = require("../controllers/auth.js");
+const verifyTokenMiddleware = require("../middleware/verifyToken.js");
+const authMiddleware = require("../middleware/auth.js");
+
+const {
+  signup,
+  signin,
+  logout,
+  googleAuthSignIn,
+  generateOTP,
+  verifyOTP,
+  createResetSession,
+  findUserByEmail,
+  resetPassword
+} = authControllers;
+
+const { verifyToken } = verifyTokenMiddleware;
+const { localVariables } = authMiddleware;
 
 const router = express.Router();
 
@@ -26,5 +46,4 @@ router.put("/forgetpassword", resetPassword);
 
 
 
-
-export default router;
+module.exports = router;

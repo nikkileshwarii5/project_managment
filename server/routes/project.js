@@ -1,7 +1,32 @@
-import express from "express";
-import { addProject, deleteProject, getProject, updateProject,removeMember, inviteProjectMember, verifyInvitation, getProjectMembers, addWork, getWorks, updateMembers } from "../controllers/project.js";
-import { verifyToken } from "../middleware/verifyToken.js";
-import { localVariables } from "../middleware/auth.js";
+// import express from "express";
+// import { addProject, deleteProject, getProject, updateProject,removeMember, inviteProjectMember, verifyInvitation, getProjectMembers, addWork, getWorks, updateMembers } from "../controllers/project.js";
+// import { verifyToken } from "../middleware/verifyToken.js";
+// import { localVariables } from "../middleware/auth.js";
+
+
+
+const express = require("express");
+const projectControllers = require("../controllers/project.js");
+const verifyTokenMiddleware = require("../middleware/verifyToken.js");
+const authMiddleware = require("../middleware/auth.js");
+
+const {
+  addProject,
+  deleteProject,
+  getProject,
+  updateProject,
+  removeMember,
+  inviteProjectMember,
+  // verifyInvitation,
+  // getProjectMembers,
+  // addWork,
+  // getWorks,
+  updateMembers
+} = projectControllers;
+
+const { verifyToken } = verifyTokenMiddleware;
+const { localVariables } = authMiddleware;
+
 
 const router = express.Router();
 
@@ -21,15 +46,15 @@ router.patch("/member/remove/:id", verifyToken, removeMember)
 //invite a  project
 router.post("/invite/:id", verifyToken, localVariables, inviteProjectMember)
 //verify a invite
-router.get("/invite/:code", verifyInvitation)
-//get  members
-router.get("/members/:id",verifyToken, getProjectMembers)
+// router.get("/invite/:code", verifyInvitation)
+// //get  members
+// router.get("/members/:id",verifyToken, getProjectMembers)
 
 //works
 // add works to a project
-router.post("/works/:id", verifyToken, addWork)
-//get all works of a project
-router.get("/works/:id", verifyToken, getWorks)
+// router.post("/works/:id", verifyToken, addWork)
+// //get all works of a project
+// router.get("/works/:id", verifyToken, getWorks)
 
 
-export default router;
+module.exports = router;

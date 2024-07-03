@@ -1,18 +1,23 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/user.js';
-import projectRoutes from './routes/project.js';
-import teamRoutes from './routes/teams.js';
-import cookieParser from "cookie-parser";
-import cors from 'cors';
-import morgan from 'morgan';
+const express = require('express');
+const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+const authRoutes = require('./routes/auth.js');
+const userRoutes = require('./routes/user.js');
+const projectRoutes = require('./routes/project.js');
+const teamRoutes = require('./routes/teams.js');
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const morgan = require('morgan');
+
+
+
 const app = express();
 dotenv.config();
 
 /** Middlewares */
 app.use(express.json());
+app.use(cookieParser());
+
 const corsConfig = {
     credentials: true,
     origin: true,
@@ -20,6 +25,7 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.use(morgan('tiny'));
 app.disable('x-powered-by');
+
 
 const port = process.env.PORT || 8700;
 

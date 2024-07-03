@@ -1,7 +1,29 @@
-import express from "express";
-import { addTeam, getTeam, deleteTeam, updateTeam, addTeamProject, inviteTeamMember, verifyInvitationTeam, getTeamMembers, removeMember, updateMembers } from "../controllers/teams.js";
-import { verifyToken } from "../middleware/verifyToken.js";
-import { localVariables } from "../middleware/auth.js";
+// import express from "express";
+// import { addTeam, getTeam, deleteTeam, updateTeam, addTeamProject, inviteTeamMember, verifyInvitationTeam, getTeamMembers, removeMember, updateMembers } from "../controllers/teams.js";
+// import { verifyToken } from "../middleware/verifyToken.js";
+// import { localVariables } from "../middleware/auth.js";
+
+const express = require("express");
+const teamsControllers = require("../controllers/teams.js");
+const verifyTokenMiddleware = require("../middleware/verifyToken.js");
+const authMiddleware = require("../middleware/auth.js");
+
+const {
+  addTeam,
+  getTeam,
+  deleteTeam,
+  updateTeam,
+  addTeamProject,
+  inviteTeamMember,
+  verifyInvitationTeam,
+  getTeamMembers,
+  removeMember,
+  updateMembers
+} = teamsControllers;
+
+const { verifyToken } = verifyTokenMiddleware;
+const { localVariables } = authMiddleware;
+
 
 const router = express.Router();
 
@@ -27,4 +49,4 @@ router.get("/invite/:code",verifyInvitationTeam)
 router.get("/members/:id", verifyToken, getTeamMembers)
 
 
-export default router;
+module.exports = router;

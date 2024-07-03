@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const WorksSchema = new mongoose.Schema({
     projectId: {
@@ -46,4 +46,4 @@ const WorksSchema = new mongoose.Schema({
     { timestamps: true }
 );
 
-export default mongoose.model("Works", WorksSchema);
+module.exports = mongoose.model("Works", WorksSchema);

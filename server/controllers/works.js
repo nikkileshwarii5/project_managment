@@ -1,11 +1,20 @@
-import mongoose from "mongoose";
-import User from "../models/User.js";
-import bcrypt from "bcrypt";
-import { createError } from "../error.js";
-import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
-import dotenv from 'dotenv';
-import Works from "../models/Works.js";
+// import mongoose from "mongoose";
+// import User from "../models/User.js";
+// import bcrypt from "bcrypt";
+// import { createError } from "../error.js";
+// import jwt from "jsonwebtoken";
+// import nodemailer from "nodemailer";
+// import dotenv from 'dotenv';
+// import Works from "../models/Works.js";
+const mongoose = require("mongoose");
+const User = require("../models/User.js");
+const bcrypt = require("bcrypt");
+const { createError } = require("../error.js");
+const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+const dotenv = require('dotenv');
+const Works = require("../models/Works.js");
+
 
 
 export const addWork = async (req, res, next) => {
@@ -92,7 +101,7 @@ export const updateProject = async (req, res, next) => {
     for (let i = 0; i < project.members.length; i++) {
       if (project.members[i].id === req.user.id) {
         if (project.members[i].access === "Owner" || project.members[i].access === "Admin" || project.members[i].access === "Editor") {
-          const updatedproject = await Project.findByIdAndUpdate(
+          const updatedproject = await project.findByIdAndUpdate(
             req.params.id,
             {
               $set: req.body,
@@ -162,7 +171,7 @@ export const inviteProjectMember = async (req, res, next) => {
 //verify invitation and add to project member
 export const verifyInvitation = async (req, res, next) => {
   try {
-    const project = await Project.findById(req.params.projectId);
+    const project = await project.findById(req.params.projectId);
     if (!project) return next(createError(404, "Project not found!"));
     const user = await User.findById(req.params.userId);
     if (!user) {
@@ -174,7 +183,7 @@ export const verifyInvitation = async (req, res, next) => {
       }
     }
     const newMember = { id: user.id, img: user.img, name: user.name, email: user.email, role: "d", access: "View Only" };
-    const updatedProject = await Project.findByIdAndUpdate(
+    const updatedProject = await project.findByIdAndUpdate(
       req.params.projectId,
       {
         $push: { members: newMember },

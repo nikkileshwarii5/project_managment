@@ -1,5 +1,7 @@
-import mongoose from "mongoose";
-import jwt from "jsonwebtoken";
+// import mongoose from "mongoose";
+// import jwt from "jsonwebtoken";
+const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
     name: {
@@ -64,4 +66,4 @@ UserSchema.methods.generateVerificationToken = function () {
     return verificationToken;
 };
 
-export default mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", UserSchema);
